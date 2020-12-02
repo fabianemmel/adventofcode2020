@@ -54,7 +54,7 @@ namespace AdventOfCode
 
         private bool isValidPasswordNew(string password, int firstPos, int secondPos, string character)
         {
-            if ((password[firstPos - 1] == character[0] && password[secondPos - 1] != character[0]) || (password[firstPos - 1] != character[0] && password[secondPos - 1] == character[0]))
+            if (password[firstPos - 1] == character[0] ^ password[secondPos - 1] == character[0])
                 return true;
             return false;
         }
