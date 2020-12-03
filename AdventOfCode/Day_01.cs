@@ -12,6 +12,10 @@ namespace AdventOfCode
 
         public Day_01()
         {
+            if (!File.Exists(InputFilePath))
+            {
+                throw new SolvingException($"Path {InputFilePath} not found for {GetType().Name}");
+            }                   
             _input = File.ReadAllLines(InputFilePath).Select(int.Parse).ToList();
         }
         public override string Solve_1()
