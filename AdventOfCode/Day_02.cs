@@ -8,8 +8,6 @@ namespace AdventOfCode
     public class Day_02 : BaseDay
     {
         private readonly string[] _input;
-        private const int target = 2020;
-
         public Day_02()
         {
             if (!File.Exists(InputFilePath))

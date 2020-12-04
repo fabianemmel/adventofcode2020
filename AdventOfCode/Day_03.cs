@@ -8,7 +8,6 @@ namespace AdventOfCode
     public class Day_03 : BaseDay
     {
         private readonly string[] _input;
-        private const int target = 2020;
 
         public Day_03()
         {
