@@ -1,7 +1,5 @@
 ﻿using AoCHelper;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AdventOfCode
 {
@@ -13,7 +11,7 @@ namespace AdventOfCode
             if (!File.Exists(InputFilePath))
             {
                 throw new SolvingException($"Path {InputFilePath} not found for {GetType().Name}");
-            }            
+            }
             _input = File.ReadAllLines(InputFilePath);
         }
         public override string Solve_1()

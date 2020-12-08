@@ -1,6 +1,5 @@
 ﻿using AoCHelper;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace AdventOfCode
@@ -14,28 +13,28 @@ namespace AdventOfCode
             if (!File.Exists(InputFilePath))
             {
                 throw new SolvingException($"Path {InputFilePath} not found for {GetType().Name}");
-            }            
+            }
             _input = File.ReadAllLines(InputFilePath);
         }
         public override string Solve_1()
-        {            
+        {
             return getTreesOnSlope(3, 1).ToString();
         }
 
         private int getTreesOnSlope(int movX, int movY)
-        {   
+        {
             int currentPosX = 0, currentPosY = 0;
             int width = _input[0].Length;
             int height = _input.Length;
 
             int nTrees = 0;
 
-            while(currentPosY < height - 1)
+            while (currentPosY < height - 1)
             {
                 currentPosX = (currentPosX + movX) % width;
                 currentPosY += movY;
-                if(_input.ElementAt(currentPosY).ElementAt(currentPosX) == '#') nTrees++;
-            }            
+                if (_input.ElementAt(currentPosY).ElementAt(currentPosX) == '#') nTrees++;
+            }
             return nTrees;
         }
 

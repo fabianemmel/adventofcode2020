@@ -1,9 +1,6 @@
 ﻿using AoCHelper;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Diagnostics;
 
 namespace AdventOfCode
 {
@@ -21,7 +18,7 @@ namespace AdventOfCode
         }
         public override string Solve_1()
         {
-            var passports = _input.Split("\n\n", System.StringSplitOptions.RemoveEmptyEntries);
+            var passports = _input.Split("\r\n\r\n", System.StringSplitOptions.RemoveEmptyEntries);
             var nValid = 0;
             foreach (var passport in passports)
             {
@@ -45,14 +42,14 @@ namespace AdventOfCode
             if (nElements == 8 || (nElements == 7 && cid == false)) return true;
             return false;
         }
-        
+
         public override string Solve_2()
         {
-            var passports = _input.Split("\n\n", System.StringSplitOptions.RemoveEmptyEntries);
+            var passports = _input.Split("\r\n\r\n", System.StringSplitOptions.RemoveEmptyEntries);
             var nValid = 0;
             foreach (var passport in passports)
             {
-                if (isValidPassportRegex(passport)) nValid++;                    
+                if (isValidPassportRegex(passport)) nValid++;
             }
             return nValid.ToString();
         }
@@ -61,7 +58,7 @@ namespace AdventOfCode
         bool isValidPassportRegex(string passport)
         {
             var cid = false;
-            var passportFields = passport.Split(new char[] { ':', '\n', ' ' });
+            var passportFields = passport.Split(new char[] { ':', '\n', ' ', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
             var nElements = passportFields.Length / 2;
             if (nElements < 7) return false;
 
@@ -83,11 +80,11 @@ namespace AdventOfCode
                         if (!Regex.IsMatch(value, "^(1([5-8][0-9]|9[0-3])cm|(59|6[0-9]|7[0-6])in)$")) return false;
                         break;
                     case "hcl":
-                        if (!Regex.IsMatch(value, "^(#[a-f0-9]{6})$") ) return false;
+                        if (!Regex.IsMatch(value, "^(#[a-f0-9]{6})$")) return false;
                         break;
                     case "ecl":
                         if (!Regex.IsMatch(value, "^(amb|blu|brn|gry|grn|hzl|oth)$")) return false;
-                         break;
+                        break;
                     case "pid":
                         if (!Regex.IsMatch(value, "^([0-9]{9})$")) return false;
                         break;
@@ -101,6 +98,6 @@ namespace AdventOfCode
                 return true;
             }
             return false;
-        }    
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AoCHelper;
 using System.IO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace AdventOfCode
@@ -14,7 +13,7 @@ namespace AdventOfCode
             if (!File.Exists(InputFilePath))
             {
                 throw new SolvingException($"Path {InputFilePath} not found for {GetType().Name}");
-            }            
+            }
             _input = File.ReadAllLines(InputFilePath);
         }
         public override string Solve_1()
@@ -38,7 +37,7 @@ namespace AdventOfCode
             {
                 if (seats[currentIndex] - minValue == currentIndex) currentIndex += indexShift;
                 else currentIndex -= indexShift;
-                indexShift = indexShift >> 1;                
+                indexShift = indexShift >> 1;
             }
             return (seats[currentIndex] - 1).ToString();
         }
