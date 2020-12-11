@@ -124,19 +124,16 @@ namespace AdventOfCode
 
         private int CheckDirection(int x, int y, int dx, int dy)
         {
-            var mul = 1;
             while(true)
             {
-                if (x + mul * dx < 0 || x + mul * dx >= currentGeneration.GetLength(0) || y + mul * dy < 0 || y + mul * dy >= currentGeneration.GetLength(1)) return 0;
-                else
+                x += dx;
+                y += dy;                
+                if(x < 0 || x >= currentGeneration.GetLength(0) || y < 0 || y >= currentGeneration.GetLength(1)) return 0;
+                switch(currentGeneration[x, y])
                 {
-                    switch(currentGeneration[x + mul * dx, y + mul * dy])
-                    {
-                        case 'L': return 0;
-                        case '#': return 1;
-                    }
-                }
-                mul++;
+                    case 'L': return 0;
+                    case '#': return 1;
+                }                
             }
         }
 
