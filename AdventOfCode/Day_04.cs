@@ -1,6 +1,7 @@
 ﻿using AoCHelper;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace AdventOfCode
 {
@@ -18,26 +19,26 @@ namespace AdventOfCode
         }
         public override string Solve_1()
         {
-            var passports = _input.Split("\r\n\r\n", System.StringSplitOptions.RemoveEmptyEntries);
-            var nValid = 0;
-            foreach (var passport in passports)
-            {
-                if (isValidPassport(passport)) nValid++;
-            }
-            return nValid.ToString();
+            return _input.Split("\r\n\r\n", System.StringSplitOptions.RemoveEmptyEntries).Where(IsValidPassport).Count().ToString();
         }
 
-        bool isValidPassport(string passport)
+        bool IsValidPassport(string passport)
         {
-            var nElements = 0;
-            bool cid = false;
+            int nElements;
+            bool cid;
 
             cid = false;
             var passportFields = passport.Split(new char[] { ':', '\n', ' ' });
             nElements = passportFields.Length / 2;
-            for (int i = 0; i < passportFields.Length; i = i + 2)
+            if (nElements < 7) return false;
+
+            for (int i = 0; i < passportFields.Length; i +=  2)
             {
-                if (passportFields[i] == "cid") cid = true;
+                if (passportFields[i] == "cid")
+                {
+                    cid = true;
+                    break;
+                }
             }
             if (nElements == 8 || (nElements == 7 && cid == false)) return true;
             return false;
@@ -45,24 +46,17 @@ namespace AdventOfCode
 
         public override string Solve_2()
         {
-            var passports = _input.Split("\r\n\r\n", System.StringSplitOptions.RemoveEmptyEntries);
-            var nValid = 0;
-            foreach (var passport in passports)
-            {
-                if (isValidPassportRegex(passport)) nValid++;
-            }
-            return nValid.ToString();
+            return _input.Split("\r\n\r\n", System.StringSplitOptions.RemoveEmptyEntries).Where(IsValidPassportRegex).Count().ToString();
         }
 
-
-        bool isValidPassportRegex(string passport)
+        bool IsValidPassportRegex(string passport)
         {
             var cid = false;
             var passportFields = passport.Split(new char[] { ':', '\n', ' ', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
             var nElements = passportFields.Length / 2;
             if (nElements < 7) return false;
 
-            for (int i = 0; i < passportFields.Length; i = i + 2)
+            for (int i = 0; i < passportFields.Length; i += 2)
             {
                 var value = passportFields[i + 1];
                 switch (passportFields[i])
@@ -93,10 +87,8 @@ namespace AdventOfCode
                         break;
                 }
             }
-            if (nElements == 8 || (nElements == 7 && cid == false))
-            {
-                return true;
-            }
+
+            if (nElements == 8 || (nElements == 7 && cid == false)) return true;
             return false;
         }
     }

@@ -36,7 +36,7 @@ namespace AdventOfCode
             return totalBags.Distinct().Count().ToString();
         }
 
-        private List<BagContent> ParseBags(string bags)
+        private static List<BagContent> ParseBags(string bags)
         {
             var list = new List<BagContent>();
             bags.Replace(".", "").Replace(" bags", "").Replace(" bag", "").Split(", ").Where(x => x != "no other").ToList().ForEach(x => list.Add(new BagContent(x)));

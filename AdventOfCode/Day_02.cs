@@ -22,12 +22,12 @@ namespace AdventOfCode
             foreach (var line in _input)
             {
                 currentLine = line.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
-                if (isValidPasswordOld(currentLine[3], int.Parse(currentLine[0]), int.Parse(currentLine[1]), currentLine[2])) nValid++;
+                if (IsValidPasswordOld(currentLine[3], int.Parse(currentLine[0]), int.Parse(currentLine[1]), currentLine[2])) nValid++;
             }
             return nValid.ToString();
         }
 
-        private bool isValidPasswordOld(string password, int minLength, int maxLength, string character)
+        private bool IsValidPasswordOld(string password, int minLength, int maxLength, string character)
         {
             var n = 0;
             foreach (var letter in password)
@@ -47,12 +47,12 @@ namespace AdventOfCode
             foreach (var line in _input)
             {
                 currentLine = line.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
-                if (isValidPasswordNew(currentLine[3], int.Parse(currentLine[0]), int.Parse(currentLine[1]), currentLine[2])) nValid++;
+                if (IsValidPasswordNew(currentLine[3], int.Parse(currentLine[0]), int.Parse(currentLine[1]), currentLine[2])) nValid++;
             }
             return nValid.ToString();
         }
 
-        private bool isValidPasswordNew(string password, int firstPos, int secondPos, string character)
+        private bool IsValidPasswordNew(string password, int firstPos, int secondPos, string character)
         {
             if (password[firstPos - 1] == character[0] ^ password[secondPos - 1] == character[0])
                 return true;

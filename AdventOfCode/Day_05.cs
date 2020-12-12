@@ -18,17 +18,17 @@ namespace AdventOfCode
         }
         public override string Solve_1()
         {
-            return _input.Select(seatString => this.getSeatId(seatString)).Max().ToString();
+            return _input.Select(seatString => GetSeatId(seatString)).Max().ToString();
         }
 
-        public int getSeatId(string seatstring)
+        public static int GetSeatId(string seatstring)
         {
             return Convert.ToInt32(seatstring.Replace('F', '0').Replace('B', '1').Replace('L', '0').Replace('R', '1'), 2);
         }
 
         public override string Solve_2()
         {
-            var seats = _input.Select(seatString => this.getSeatId(seatString)).ToList();
+            var seats = _input.Select(seatString => GetSeatId(seatString)).ToList();
             seats.Sort();
             var minValue = seats[0];
             var currentIndex = seats.Count >> 1;
@@ -37,7 +37,7 @@ namespace AdventOfCode
             {
                 if (seats[currentIndex] - minValue == currentIndex) currentIndex += indexShift;
                 else currentIndex -= indexShift;
-                indexShift = indexShift >> 1;
+                indexShift >>= 1;
             }
             return (seats[currentIndex] - 1).ToString();
         }

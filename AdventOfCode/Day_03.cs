@@ -18,10 +18,10 @@ namespace AdventOfCode
         }
         public override string Solve_1()
         {
-            return getTreesOnSlope(3, 1).ToString();
+            return GetTreesOnSlope(3, 1).ToString();
         }
 
-        private int getTreesOnSlope(int movX, int movY)
+        private int GetTreesOnSlope(int movX, int movY)
         {
             int currentPosX = 0, currentPosY = 0;
             int width = _input[0].Length;
@@ -41,11 +41,11 @@ namespace AdventOfCode
         public override string Solve_2()
         {
             long result = 1;
-            result *= getTreesOnSlope(1, 1);
-            result *= getTreesOnSlope(3, 1);
-            result *= getTreesOnSlope(5, 1);
-            result *= getTreesOnSlope(7, 1);
-            result *= getTreesOnSlope(1, 2);
+            result *= GetTreesOnSlope(1, 1);
+            result *= GetTreesOnSlope(3, 1);
+            result *= GetTreesOnSlope(5, 1);
+            result *= GetTreesOnSlope(7, 1);
+            result *= GetTreesOnSlope(1, 2);
             return result.ToString();
         }
     }

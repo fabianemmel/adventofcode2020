@@ -22,7 +22,7 @@ namespace AdventOfCode
             neighbours = new int[_input.Length, _input[0].Length];
         }
 
-        private void parseInput()
+        private void ParseInput()
         {
             for (int i = 0; i < currentGeneration.GetLength(0); i++)
             {
@@ -35,7 +35,7 @@ namespace AdventOfCode
 
         public override string Solve_1()
         {
-            parseInput();
+            ParseInput();
             changed = true;
             while (changed)
             {                
@@ -94,11 +94,7 @@ namespace AdventOfCode
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    if (i + x < 0 || i + x >= currentGeneration.GetLength(0) || j + y < 0 || j + y >= currentGeneration.GetLength(1) || (x == 0 && y == 0)) ;
-                    else
-                    {
-                        if (currentGeneration[i + x, j + y] == '#') sum++;
-                    }
+                    if (!(i + x < 0 || i + x >= currentGeneration.GetLength(0) || j + y < 0 || j + y >= currentGeneration.GetLength(1) || (x == 0 && y == 0))) if (currentGeneration[i + x, j + y] == '#') sum++;
                 }
             }
             return sum;
@@ -139,7 +135,7 @@ namespace AdventOfCode
 
         public override string Solve_2()
         {
-            parseInput();
+            ParseInput();
 
             changed = true;
             while (changed)
